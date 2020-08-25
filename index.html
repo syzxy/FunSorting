@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="sorting.js"></script>
+    <script src="main.js"></script>
+    <title>QuickSort Visualization</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div id="head">
+      <span class="material-icons">graphic_eq</span>
+      <h1 class>
+        Fun Sorting
+      </h1>
+    </div>
+    <!-- Parent container of the p5 canvas -->
+    <div id="canvasContainer"></div>
+    <footer id="player">
+      <div class="buttons">
+        <ul>
+          <li onclick="shuffleElements()">
+            <i class="material-icons" id="replayButton">bar_chart</i>
+            <span>shuffle</span>
+          </li>
+
+          <li onclick="replay()">
+            <i class="material-icons" id="replayButton">fast_rewind</i>
+            <span>replay</span>
+          </li>
+
+          <li onclick="lastStep()">
+            <i class="material-icons" id="replayButton">skip_previous</i>
+            <span>last</span>
+          </li>
+
+          <li onclick="togglePlay()">
+            <i class="material-icons" id="playButton">play_arrow</i>
+            <span id="playButtonText">play</span>
+          </li>
+
+          <li onclick="nextStep()">
+            <i class="material-icons" id="replayButton">skip_next</i>
+            <span>next</span>
+          </li>
+
+          <li onclick="finishPlay()">
+            <i class="material-icons" id="replayButton">fast_forward</i>
+            <span>finish</span>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
