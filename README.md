@@ -4,7 +4,7 @@ Sorting algorithm visualization with html, css, js and p5.js
 ## Modules
 :radio_button: Play/Pause
 
-:white_circle: shuffle
+:radio_button: shuffle
 
 :white_circle: last/next step
 
