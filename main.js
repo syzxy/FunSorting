@@ -1,6 +1,9 @@
-/* 
-Play/Pause the visulization
-*/
+/* prevent mouse double click and drag selection(and probably more) */
+document.addEventListener('mousedown', function (event) {
+    event.preventDefault();
+}, false);
+
+/* Play/Pause the visulization */
 function togglePlay() {
     $(document).ready(function () {
         let ele = document.getElementById("playButton");
@@ -37,5 +40,40 @@ function togglePlay() {
 }
 
 function shuffleElements() {
+    currentAlgorithm.reset();
+    generateElements();
+    redraw();
+}
 
+function replay() {
+    console.log("replay: TODO");
+}
+
+function finishPlay() {
+    console.log("finishPlay: TODO");
+}
+
+function lastStep() {
+    console.log("nextStep: TODO");
+}
+
+function nextStep() {
+    console.log("nextStep: TODO");
+}
+
+function accelerate() {
+    console.log("accelerate: TODO");
+    let speed = document.getElementById("speedDisplay");
+    console.log(speed.innerHTML);
+    switch (speed.innerHTML) {
+        case '1x':
+            speed.innerHTML = '2x';
+            break;
+        case '2x':
+            speed.innerHTML = '4x';
+            break;
+        case '4x':
+            speed.innerHTML = '1x';
+            break;
+    }
 }

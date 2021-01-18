@@ -1,4 +1,6 @@
 body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   background-color: rgb(0, 0, 0);
   margin: 0;
   font-family: "Ubuntu", sans-serif;
@@ -28,7 +30,6 @@ body {
   text-transform: uppercase;
   text-align: left;
   margin: 0 0 0 0px;
-  font-family: "Ubuntu", sans-serif;
   font-size: 20px;
   color: white;
   line-height: 25px;
@@ -36,10 +37,21 @@ body {
 
 #canvasContainer {
   display: flex;
+  margin-top: 6px;
+  margin-bottom: 6px;
   /* centers the canvas horizontally */
   justify-content: center;
   /* and vertically  */
   align-items: center;
+}
+
+#canvasContainer .p5Canvas {
+  margin: 10px 5px;
+  padding: 20 40px;
+}
+
+#canvasContainer .p5Canvas:hover {
+  border: 1px solid #666;
 }
 
 footer {

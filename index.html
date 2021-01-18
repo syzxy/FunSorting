@@ -4,7 +4,8 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="sketch.js"></script>
-    <script src="sorting.js"></script>
+    <script src="bubbleSort.js"></script>
+    <script src="mergeSort.js"></script>
     <script src="main.js"></script>
     <title>QuickSort Visualization</title>
     <meta charset="utf-8" />
@@ -21,14 +22,12 @@
   </head>
 
   <body>
-    <div id="head">
+    <header id="head">
       <span class="material-icons">graphic_eq</span>
-      <h1 class>
-        Fun Sorting
-      </h1>
-    </div>
+      <h1 class>Fun Sorting</h1>
+    </header>
     <!-- Parent container of the p5 canvas -->
-    <div id="canvasContainer"></div>
+    <main id="canvasContainer"></main>
     <footer id="player">
       <div class="buttons">
         <ul>
@@ -60,6 +59,11 @@
           <li onclick="finishPlay()">
             <i class="material-icons" id="replayButton">fast_forward</i>
             <span>finish</span>
+          </li>
+
+          <li onclick="$(accelerate())">
+            <i class="material-icons" id="replayButton">speed</i>
+            <span id="speedDisplay">1x</span>
           </li>
         </ul>
       </div>
