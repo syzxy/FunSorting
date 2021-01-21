@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="sketch.js"></script>
-    <script src="bubbleSort.js"></script>
-    <script src="mergeSort.js"></script>
-    <script src="main.js"></script>
-    <title>QuickSort Visualization</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="src/sketch.js"></script>
+    <script src="src/sort.js"></script>
+    <script src="src/bubbleSort.js"></script>
+    <script src="src/mergeSort.js"></script>
+    <script src="src/main.js"></script>
+    <title>QuickSort Visualization</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -18,55 +19,52 @@
       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="main.css" />
   </head>
-
   <body>
-    <header id="head">
+    <header>
       <span class="material-icons">graphic_eq</span>
-      <h1 class>Fun Sorting</h1>
+      <h1>Fun Sorting</h1>
     </header>
     <!-- Parent container of the p5 canvas -->
-    <main id="canvasContainer"></main>
-    <footer id="player">
-      <div class="buttons">
-        <ul>
-          <li onclick="shuffleElements()">
-            <i class="material-icons" id="replayButton">bar_chart</i>
-            <span>shuffle</span>
-          </li>
+    <main class="canvasContainer"></main>
+    <footer>
+      <ul class="player">
+        <li class="enabled">
+          <span class="labels">shuffle</span>
+          <button class="material-icons" id="shuffleBtn">bar_chart</button>
+        </li>
 
-          <li onclick="replay()">
-            <i class="material-icons" id="replayButton">fast_rewind</i>
-            <span>replay</span>
-          </li>
+        <li class="enabled">
+          <span class="labels">replay</span>
+          <button class="material-icons" id="restartBtn">fast_rewind</button>
+        </li>
 
-          <li onclick="lastStep()">
-            <i class="material-icons" id="replayButton">skip_previous</i>
-            <span>last</span>
-          </li>
+        <li class="enabled">
+          <span class="labels">last</span>
+          <button class="material-icons" id="previousBtn">skip_previous</button>
+        </li>
 
-          <li onclick="togglePlay()">
-            <i class="material-icons" id="playButton">play_arrow</i>
-            <span id="playButtonText">play</span>
-          </li>
+        <li class="enabled">
+          <span class="labels" id="playButtonText">play</span>
+          <button class="material-icons" id="playBtn">play_arrow</button>
+        </li>
 
-          <li onclick="nextStep()">
-            <i class="material-icons" id="replayButton">skip_next</i>
-            <span>next</span>
-          </li>
+        <li class="enabled">
+          <span class="labels">next</span>
+          <button class="material-icons" id="nextBtn">skip_next</button>
+        </li>
 
-          <li onclick="finishPlay()">
-            <i class="material-icons" id="replayButton">fast_forward</i>
-            <span>finish</span>
-          </li>
+        <li class="enabled">
+          <span class="labels">finish</span>
+          <button class="material-icons" id="finishBtn">fast_forward</button>
+        </li>
 
-          <li onclick="$(accelerate())">
-            <i class="material-icons" id="replayButton">speed</i>
-            <span id="speedDisplay">1x</span>
-          </li>
-        </ul>
-      </div>
+        <li class="enabled">
+          <span class="labels" id="speedBtnText">1x</span>
+          <button class="material-icons" id="speedBtn">speed</button>
+        </li>
+      </ul>
     </footer>
   </body>
 </html>
