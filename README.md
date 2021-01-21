@@ -12,4 +12,5 @@ Sorting algorithm visualization with html, css, js and p5.js
 
 ## Algorithms
 :radio_button: Bubble sort
+
 :radio_button: Merge sort
