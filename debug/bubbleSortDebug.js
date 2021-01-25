@@ -1,5 +1,4 @@
 /* Bubble Sort */
-
 class BubbleSort extends Sort {
     constructor() {
         super();

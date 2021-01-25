@@ -34,7 +34,7 @@ header {
   /* border: 1px dotted white; */
 }
 
-header .material-icons {
+header .material-icons-round {
   color: gold;
   margin: 0 5px 0 10px;
 }
@@ -123,12 +123,17 @@ footer .player button {
   background-color: #212121;
   outline: none;
   padding: 0.3rem;
+  margin-top: 5px;
   color: inherit;
   font-size: 3rem;
   cursor: inherit;
 
   box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.6),
               -3px -3px 15px 1px rgba(250, 250, 250, 0.3);
+}
+
+footer .player button:disabled {
+  /* cursor: not-allowed; */
 }
 
 footer .player .labels {

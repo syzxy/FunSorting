@@ -4,13 +4,12 @@
 // https://editor.p5js.org/codingtrain/sketches/vic6Qzo-j
 // https://youtu.be/eqo2LxRADhU
 
-let debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
-let debugMode = false;
-let elements = debugMode ? debugElements : [];
-let states = debugMode ? debugElements.map(() => 0) : []; // 0: default, 1: sorted, 2: activate, 3: disabled
-let colors;
-let dimmed;             // 1: dim the color of the ith bar, 0: otherwise
+const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
+let debugMode = true;
+let elements = debugMode ? [...debugElements] : [];
 let currentAlgorithm;
+let colors;
+// let dimmed;             // 1: dim the color of the ith bar, 0: otherwise
 let barWidth = 6;
 let visualSpeed = 200;
 let bgColor = '#323232';
@@ -21,13 +20,14 @@ function setup() {
     if (!debugMode) {
         generateElements();
     }
-    colors = [
-        color('#aaaaaa'),   // default
-        color('#BB86FC'),   // sorted
-        color('#03DAC5')    // activated
-    ]
+    colors = {
+        default: color('#CDCDCD'),
+        sorted: color('#850ad6'),
+        activated: color('#10E5DE'),
+        compared: color('#BB86FC'),     // winner of a comparison
+    };
     // currentAlgorithm = new BubbleSort();
-    currentAlgorithm = new MergeSort();
+    // currentAlgorithm = new MergeSort();
 }
 
 function windowResized() {
@@ -37,7 +37,7 @@ function windowResized() {
 
 /* Draw the bars on canvas */
 function draw() {
-    if (!currentAlgorithm.playing || currentAlgorithm.finished) {noLoop();}
+    if (!currentAlgorithm.playing || currentAlgorithm.finished) {stop_animation();}
     console.log("drawing...");
     background(bgColor);
     currentAlgorithm.show();
@@ -47,18 +47,17 @@ function generateElements() {
     let slot = floor(width / (2 * barWidth));
     elements = new Array(slot);
     states = new Array(elements.length);
-    dimmed = new Array(elements.length);
+    // dimmed = new Array(elements.length);
     for (let i = 0; i < elements.length; i++) {
         elements[i] = random(height * 0.1, height * 0.9);
-        states[i] = 0;
-        dimmed[i] = 0;
+        states[i] = 'default';
+        // dimmed[i] = 0;
     }
 }
 
-function stop_animate() {
+function stop_animation() {
     noLoop();
 }
 function animate() {
     loop();
 }
-
