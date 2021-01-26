@@ -33,7 +33,7 @@ class Sort {
   /* Draw bars on canvas, using p5.js */
   show(scale = this.scale) {
     for (let i = 0; i < this.arr.length; i++) {
-      let j = (2*i+1) * barWidth;
+      let j = (barInterval*i+1) * barWidth;
       stroke(colors[this.states[i]]);
       strokeWeight(barWidth);
       line(j, height / scale - barWidth, j, (height - this.arr[i]) / scale - barWidth);

@@ -13,9 +13,9 @@ const shuffleBtn = document.querySelector("#shuffleBtn"),
       finishBtn = document.querySelector("#finishBtn"),
       speedBtn = document.querySelector("#speedBtn"),
       speedLabel = document.querySelector("#speedBtnText"),
-      canvasContainer = document.querySelector(".canvasContainer"),
-      W = canvasContainer.clientWidth * 0.7,
-      H = canvasContainer.clientHeight * 0.8;
+      canvasContainer = document.querySelector(".canvasContainer");
+let W = canvasContainer.clientWidth * 0.7,
+    H = canvasContainer.clientHeight * 0.8;
 
 if (!debugMode) {
     generateElements();
@@ -145,7 +145,7 @@ function disableButtons(disabled, ...buttons) {
 }
 
 function generateElements() {
-    let slot = Math.floor(W / (2 * barWidth));
+    let slot = Math.floor(W / (barInterval * barWidth));
     elements = new Array(slot);
     states = new Array(elements.length);
     // dimmed = new Array(elements.length);

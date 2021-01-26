@@ -104,11 +104,13 @@ class MergeSort extends Sort {
         break;
       case 'merge':
         this.states[step.from] = 'sorted';
+        this.auxilaryStates[step.to] = 'sorted';
         [this.arr[step.from], this.auxilaryArray[step.to]] =
           [this.auxilaryArray[step.to], this.arr[step.from]];
         break;
       case 'replace':
         for (let i = step.from; i <= step.to; i++) {
+          // this.auxilaryStates[i] = 'default';
           [this.arr[i], this.auxilaryArray[i]] = [this.auxilaryArray[i], this.arr[i]];
         }
         break;

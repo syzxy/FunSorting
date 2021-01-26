@@ -1,6 +1,6 @@
 /* Bubble Sort */
 
-class BubbleSortDebug extends Sort {
+class BubbleSort extends Sort {
     constructor() {
         super();
         this.reset();

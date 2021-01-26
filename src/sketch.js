@@ -7,28 +7,33 @@
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
 let debugMode = false;
 let currentAlgorithm;
-let barWidth = 8;
-let visualSpeed = 50;
+let barWidth = 3;
+let barInterval = 1;
+let visualSpeed = 10;
 let elements = debugMode ? [...debugElements] : [];
 let colors;
 // let dimmed;             // 1: dim the color of the ith bar, 0: otherwise
-let bgColor = '#323232';
-
+let bgColor = '#c5d4b7';
 
 // Setup a p5 canvas
 function setup() {
     let cnv = createCanvas(W, H);
+    strokeCap(PROJECT);
+    // frameRate(30);
     colors = {
-        default: color('#CDCDCD'),
-        sorted: color('#850ad6'),
+        default: color('#91968f'),
+        sorted: color('#323232'),
         activated: color('#10E5DE'),
-        compared: color('#BB86FC'),     // winner of a comparison
+        compared: color('#da5955'),     // winner of a comparison
     };
 }
 
 function windowResized() {
     // automatic window resizing
-    resizeCanvas(windowWidth * 0.7, windowHeight * 0.6);
+    W = windowWidth * 0.7;
+    H = windowHeight * 0.6;
+    resizeCanvas(W, H);
+    shuffleElements();
 }
 
 /* Draw the bars on canvas */
