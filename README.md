@@ -6,9 +6,11 @@ Sorting algorithm visualization with html, css, js and p5.js
 
 :radio_button: shuffle
 
-:white_circle: last/next step
+:white_circle: last step
 
 :white_circle: restart/finish
+
+:radio_button: next step
 
 ## Algorithms
 :radio_button: Bubble sort

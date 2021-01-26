@@ -1,53 +1,72 @@
 /* Bubble Sort */
-class BubbleSort extends Sort {
+
+class BubbleSortDebug extends Sort {
     constructor() {
         super();
         this.reset();
     }
 
     reset() {
-        // this.visual_speed = visualSpeed;  // the moving speed of bars
-        // this.outer_loop = 0;              // values of outer loops and inner loops are needed
-        // this.inner_loop = 0;              // for resuming the visualization from the pause state
-        // this.playing = false;             // animation is playing or not
-        // this.resumed = false;             // animation is resumed from pause or regular
-        // this.paused = false;              // animation have been paused or not
-        // this.finished = false;            // stop animation upon finishing
         super.reset();
-        this.outer_loop = 0;
-        this.inner_loop = 0;
     }
 
-    async sort(outer_loop = 0, inner_loop = 0) {
-        for (let i = outer_loop; i < elements.length; i++) {
-            // record current outer loop index
-            this.outer_loop = i;
-            for (let j = this.resumed ? inner_loop : 0; j < elements.length - i - 1; j++) {
-                // record current outer loop index
-                this.resumed = false;
-                this.inner_loop = j;
-                if (elements[j] > elements[j + 1]) {
-                    states[j] = 1;
-                    await this.sleep(this.visual_speed);
-                    [elements[j], elements[j + 1]] = this.swap(elements[j], elements[j + 1]);
-                    states[j] = 0;
+    play() {
+        this.sort();
+        this.arr = [...elements];
+        this.states = this.arr.map(() => 'default');
+        this.playWholeAnimation();
+    }
+
+    sort() {
+        for (let i = 0, l = this.arr.length; i < l; i++) {
+            for (let j = 0; j < l - i - 1; j++) {
+                this.steps.push({action: 'activate', idx: [j, j+1]});
+                let compareStep = {action: "compare"};
+                let winner;
+                let loser;
+                this.steps.push(compareStep);
+                if (this.arr[j] > this.arr[j + 1]) {
+                    [this.arr[j], this.arr[j + 1]] = [this.arr[j + 1], this.arr[j]];
+                    winner = j;
+                    loser = j + 1;
+                    this.steps.push({action: "swap", from: j, to: j + 1});
+                } else {
+                    winner = j + 1;
+                    loser = j;
                 }
+                compareStep.winner = winner;
+                compareStep.loser = loser;
             }
-            states[elements.length - 1 - i] = 1;
+            this.steps.push({action: "sorted", idx: l - i - 1});
         }
-        // console.log("finished!");
-        this.finished = true;
     }
 
-    pause() {
-        stop_animate();
-        this.visual_speed = 10000000;
+    animateStep(stepIndex) {
+        if (stepIndex === this.steps.length - 1) {
+            clearInterval(this.timer);
+            this.finished = true;
+            this.playing = false;
+        }
+        let step = this.steps[stepIndex];
+        switch (step.action) {
+            case 'activate':
+                step.idx.forEach( i => {
+                    this.states[i] = 'compared';
+                });
+            case 'compare':
+                // this.states[step.winner] = 'compared';
+                this.states[step.loser] = 'default';
+                break;
+            case 'swap':
+                [this.arr[step.from], this.arr[step.to]] =
+                [this.arr[step.to], this.arr[step.from]];
+                this.states[step.from] = 'default';
+                this.states[step.to] = 'compared';
+                break;
+            case 'sorted':
+                this.states[step.idx] = 'sorted';
+                break;
+        }
     }
 
-    resume() {
-        this.resumed = true;
-        this.visual_speed = visualSpeed;
-        this.sort(this.outer_loop, this.inner_loop);
-        animate();
-    }
 }

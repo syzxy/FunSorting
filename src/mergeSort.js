@@ -1,10 +1,6 @@
-/* 
- * Merge Sort - Recursive, not-in-place
- * Run normal sorting algorithm and collect each step.
- * Animate the steps when the algorithm is done.
-*/
+/* Merge Sort - Recursive, not-in-place */
 
-class MergeSortDebug extends Sort {
+class MergeSort extends Sort {
   constructor() {
     super();
     this.reset();
@@ -17,18 +13,19 @@ class MergeSortDebug extends Sort {
     this.auxilaryStates = [...this.states];
   }
 
+  // TODO: Test to see if play should be defined in parent class
   play() {
     this.sort();
     this.arr = [...elements];
-    this.states = this.arr.map(()=>'default');
+    this.states = this.arr.map(() => 'default');
     this.playWholeAnimation();
   }
 
-  sort(low=0, high=this.arr.length-1) {
+  sort(low = 0, high = this.arr.length - 1) {
     if (low === high) {
       this.steps.push({
-        action: "return",
-        from: low,
+        action: "activate",
+        idx: low,
       });
     } else {
       const mid = Math.floor((low + high) / 2);
@@ -90,24 +87,17 @@ class MergeSortDebug extends Sort {
     });
   }
 
-  playWholeAnimation(fromStep = this.nextStep) {
-    animate();
-    this.timer = setInterval(() => {
-      if (this.nextStep === this.steps.length) {
-        clearInterval(this.timer);
-        this.finished = true;
-        this.playing = false;
-        return;
-      }
-      let step = this.steps[this.nextStep++];
-      this.animateStep(step);
-    }, visualSpeed);
-  }
-
-  animateStep(step) {
+  animateStep(stepIndex) {
+    if (stepIndex === this.steps.length - 1) {
+      clearInterval(this.timer);
+      this.finished = true;
+      this.playing = false;
+      // return;
+    }
+    let step = this.steps[stepIndex];
     switch (step.action) {
-      case 'return':
-        this.states[step.from] = 'activated';
+      case 'activate':
+        this.states[step.idx] = 'activated';
         break;
       case 'compare':
         this.states[step.winner] = this.states[step.loser] = 'compared';
