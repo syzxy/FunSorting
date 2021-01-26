@@ -1,16 +1,18 @@
 # FunSorting
-Sorting algorithm visualization with html, css, js and p5.js
+Sorting algorithms visualization with html, css, js and p5.js
 
 ## Modules
 :radio_button: Play/Pause
 
-:radio_button: shuffle
+:radio_button: Shuffle
 
-:white_circle: last step
+:radio_button: Next step
 
-:white_circle: restart/finish
+:radio_button: Restart/finish
 
-:radio_button: next step
+:radio_button: Speed
+
+:white_circle: Previous step
 
 ## Algorithms
 :radio_button: Bubble sort
