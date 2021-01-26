@@ -20,8 +20,8 @@ let W = canvasContainer.clientWidth * 0.7,
 if (!debugMode) {
     generateElements();
 }
-// currentAlgorithm = new BubbleSortDebug();
-currentAlgorithm = new MergeSort();
+currentAlgorithm = new BubbleSort();
+// currentAlgorithm = new MergeSort();
 
 
 /* Disable restart and previous step buttons initially */
@@ -125,8 +125,12 @@ function accelerate() {
             visualSpeed /= 2;
             break;
         case '4x':
+            speedLabel.textContent = '8x';
+            visualSpeed /= 2;
+            break;
+        case '8x':
             speedLabel.textContent = '1x';
-            visualSpeed *= 4;
+            visualSpeed *= 8;
             break;
     }
     console.log(speedLabel.textContent);
