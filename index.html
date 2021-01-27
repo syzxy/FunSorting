@@ -16,10 +16,11 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@100;400;700&family=Ubuntu:wght@100;400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style/main.css" />
+    <link rel="stylesheet" href="style/nav.css" />
   </head>
   <body>
     <header>
@@ -27,22 +28,52 @@
       <h1>Fun Sorting</h1>
     </header>
     <!-- Parent container of the p5 canvas -->
-    <main class="canvasContainer"></main>
+    <main class="canvasContainer">
+      <nav class="selection_menu">
+        <ul class="breadcrumb">
+          <li>
+            <span class="indicator"></span><span class="label">bubbles</span>
+          </li>
+          <li>
+            <span class="indicator"></span><span class="label">merge</span>
+          </li>
+          <li>
+            <span class="indicator"></span><span class="label">quick</span>
+          </li>
+          <li>
+            <span class="indicator"></span><span class="label">heap</span>
+          </li>
+          <li>
+            <span class="indicator"></span><span class="label">insertion</span>
+          </li>
+          <li>
+            <span class="indicator"></span><span class="label">selection</span>
+          </li>
+        </ul>
+      </nav>
+      <div></div>
+    </main>
     <footer>
       <ul class="player">
         <li class="enabled">
           <span class="labels">shuffle</span>
-          <button class="material-icons-round" id="shuffleBtn">bar_chart</button>
+          <button class="material-icons-round" id="shuffleBtn">
+            bar_chart
+          </button>
         </li>
 
         <li class="enabled">
           <span class="labels">replay</span>
-          <button class="material-icons-round" id="restartBtn">fast_rewind</button>
+          <button class="material-icons-round" id="restartBtn">
+            fast_rewind
+          </button>
         </li>
 
         <li class="enabled">
           <span class="labels">last</span>
-          <button class="material-icons-round" id="previousBtn">skip_previous</button>
+          <button class="material-icons-round" id="previousBtn">
+            skip_previous
+          </button>
         </li>
 
         <li class="enabled">
@@ -57,7 +88,9 @@
 
         <li class="enabled">
           <span class="labels">finish</span>
-          <button class="material-icons-round" id="finishBtn">fast_forward</button>
+          <button class="material-icons-round" id="finishBtn">
+            fast_forward
+          </button>
         </li>
 
         <li class="enabled">

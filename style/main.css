@@ -48,16 +48,19 @@ h1 {
 /*|| Main Content Settings */
 
 .canvasContainer {
-  display: flex;
-  /* centers the canvas horizontally */
+  /* display: flex;
   justify-content: center;
-  /* and vertically  */
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  place-items: center;
 
   /* border: 1px dotted white; */
 }
 
 .p5Canvas {
+  grid-column: 2/3;
+  grid-row: 1;
   padding: 0.5rem;
   background-color: #323232;
   border-radius: 1rem;
@@ -129,11 +132,17 @@ footer .player button {
   cursor: inherit;
 
   box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.6),
-              -3px -3px 15px 1px rgba(250, 250, 250, 0.3);
+              -3px -3px 10px 1px rgba(250, 250, 250, 0.1);
 }
 
 footer .player button:disabled {
   /* cursor: not-allowed; */
+}
+
+footer .player li.enabled:hover button {
+  /* box-shadow: 0px 0px 10px 2px rgba(255, 215, 0, 0.3); */
+  box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.6),
+              0px 0px 15px 2px rgba(244, 200, 25, 0.3);
 }
 
 footer .player .labels {

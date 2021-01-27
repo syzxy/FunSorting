@@ -1,0 +1,70 @@
+/* Algorithm selection menu */
+
+.selection_menu {
+  width: 15em;
+  /* border: 1px dotted white; */
+}
+
+.breadcrumb {
+  cursor: pointer;
+  list-style: none;
+  color: #adadad;
+  overflow: hidden;
+}
+
+.breadcrumb:hover .label {
+  opacity: 1;
+  transform: translateX(0);
+  transition: 0.3s ease-in opacity, 0.3s ease-in-out transform;
+}
+
+.breadcrumb li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 100;
+  text-transform: capitalize;
+  padding-left: 2rem;
+}
+
+.breadcrumb .label {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: 0.23s ease-out opacity, 0.3s ease-in-out transform;
+}
+
+.breadcrumb li:hover {
+  color: gold;
+  transition: 0.2s ease-in color;
+}
+
+.breadcrumb li:hover .indicator::before {
+  background-color: orange;
+  box-shadow: 0 0 5px 0px #ffffff;
+  transition: 0.2s ease-in background-color, 0.2s ease-in-out box-shadow;
+}
+
+.breadcrumb .indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+}
+
+.breadcrumb .indicator::before {
+  box-sizing: content-box;
+  content: "";
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  background-color: #adadad;
+  box-shadow: 0 0 4px 2px #000000;
+}
+
+/* margin on the right side of the canvas */
+.canvasContainer div {
+  width: 15em;
+  margin-right: 4rem;
+}
