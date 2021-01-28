@@ -3,7 +3,7 @@ document.addEventListener('mousedown', function (event) {
     event.preventDefault();
 }, false);
 
-/* References to UI buttons / canvas container */
+/* References to play buttons / canvas container */
 const shuffleBtn = document.querySelector("#shuffleBtn"),
       restartBtn = document.querySelector("#restartBtn"),
       previousBtn = document.querySelector("#previousBtn"),
@@ -17,12 +17,47 @@ const shuffleBtn = document.querySelector("#shuffleBtn"),
 let W = canvasContainer.clientWidth * 0.7,
     H = canvasContainer.clientHeight * 0.8;
 
+/* Refrence to algorithm selection menu */
+const algorithms = document.querySelectorAll(".breadCrumb li");
+algorithms.forEach(btn => {
+    btn.addEventListener('click', selectAlgorithm);
+});
+
 if (!debugMode) {
     generateElements();
 }
-currentAlgorithm = new BubbleSort();
-// currentAlgorithm = new MergeSort();
 
+/* Select an algorithm */
+currentAlgorithm = new BubbleSort(); /* default algorithm */
+let selection;
+function selectAlgorithm() {
+    if (!selection) {
+        // console.log("same selection");
+        this.setAttribute('class', 'selected');
+        selection = this;
+    } else if (selection !== this) {
+        // console.log("new selection");
+        selection.setAttribute('class', '');
+        this.setAttribute('class', 'selected');
+        selection = this;
+    }
+    const algorithm = this.querySelector(".label").textContent;
+    switch (algorithm) {
+        case "bubble":
+            currentAlgorithm = new BubbleSort();
+            break;
+        case "merge":
+            currentAlgorithm = new MergeSort();
+            break;
+        case "quick":
+            currentAlgorithm = new QuickSort();
+            break;
+        case "heap":
+            currentAlgorithm = new HeapSort();
+            break;
+    }
+    replay();
+}
 
 /* Disable restart and previous step buttons initially */
 if (!currentAlgorithm.playing && !currentAlgorithm.finished) {
