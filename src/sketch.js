@@ -4,13 +4,7 @@
 // https://editor.p5js.org/codingtrain/sketches/vic6Qzo-j
 // https://youtu.be/eqo2LxRADhU
 
-const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
-let debugMode = false;
-let currentAlgorithm;
-let barWidth = 4;
-let barInterval = 1.1;
 let visualSpeed = 50;
-let elements = debugMode ? [...debugElements] : [];
 let colors;
 // let dimmed;             // 1: dim the color of the ith bar, 0: otherwise
 let bgColor = '#c5d4b7';
@@ -33,6 +27,7 @@ function windowResized() {
     W = windowWidth * 0.7;
     H = windowHeight * 0.6;
     resizeCanvas(W, H);
+    generateElements();
     shuffleElements();
 }
 

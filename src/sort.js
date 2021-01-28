@@ -25,6 +25,7 @@ class Sort {
   set finished(newStatus) {
     this._finished = newStatus;
     playBtn.textContent = 'play_arrow';
+    playBtnLabel.textContent = 'play';
     disableButtons(true, playBtn, nextBtn, finishBtn);
     disableButtons(false, restartBtn, previousBtn);
     console.log("Animation completed or finished manually!");
@@ -75,7 +76,7 @@ class Sort {
   // Taken from:
   // https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
   // arrow function (param list) => x is short for f(param list) {return x;}
-  sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  // sleep(ms) {
+  //   return new Promise(resolve => setTimeout(resolve, ms));
+  // }
 }

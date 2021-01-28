@@ -3,6 +3,13 @@ document.addEventListener('mousedown', function (event) {
     event.preventDefault();
 }, false);
 
+const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
+let debugMode = false;
+let currentAlgorithm;
+let barWidth = 4;
+let barInterval = 1.1;
+let elements = debugMode ? [...debugElements] : [];
+
 /* References to play buttons / canvas container */
 const shuffleBtn = document.querySelector("#shuffleBtn"),
       restartBtn = document.querySelector("#restartBtn"),
@@ -108,7 +115,7 @@ function togglePlay() {
 }
 
 function shuffleElements() {
-    generateElements();
+    FYShuffle(elements);
     replay();
 }
 
@@ -120,6 +127,7 @@ function replay() {
     currentAlgorithm.reset();
     redraw();
     playBtn.textContent = 'play_arrow';
+    playBtnLabel.textContent = 'play';
     disableButtons(true, restartBtn, previousBtn);
     disableButtons(false, playBtn, nextBtn, finishBtn);
 }
@@ -185,16 +193,20 @@ function disableButtons(disabled, ...buttons) {
 
 function generateElements() {
     let slot = Math.floor(W / (barInterval * barWidth));
+    let delta = 0.8 * H / (slot - 1);
     elements = new Array(slot);
     states = new Array(elements.length);
-    // dimmed = new Array(elements.length);
     for (let i = 0; i < elements.length; i++) {
-        elements[i] = myRandom(H * 0.1, H * 0.9);
+        elements[i] = 0.1 * H + delta * i; 
         states[i] = 'default';
-        // dimmed[i] = 0;
     }
+    FYShuffle(elements);
 }
 
-function myRandom(from, to) {
-    return Math.floor(Math.random() * (to - from)) + from;
+/** Fisher and Yates */
+function FYShuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
