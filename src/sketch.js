@@ -13,7 +13,7 @@ let bgColor = '#c5d4b7';
 function setup() {
     let cnv = createCanvas(W, H);
     strokeCap(PROJECT);
-    // frameRate(30);
+    frameRate(30);
     colors = {
         default: color('#91968f'),
         sorted: color('#323232'),

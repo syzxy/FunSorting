@@ -65,6 +65,9 @@ function selectAlgorithm() {
         case "insertion":
             currentAlgorithm = new InserstionSort();
             break;
+        case "selection":
+            currentAlgorithm = new selectionSort();
+            break;
     }
     replay();
 }
