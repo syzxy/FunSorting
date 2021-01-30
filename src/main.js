@@ -4,7 +4,7 @@ document.addEventListener('mousedown', function (event) {
 }, false);
 
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
-let debugMode = true;
+let debugMode = false;
 let currentAlgorithm;
 let barWidth = 4;
 let barInterval = 1.1;
@@ -12,15 +12,15 @@ let elements = debugMode ? [...debugElements] : [];
 
 /* References to play buttons / canvas container */
 const shuffleBtn = document.querySelector("#shuffleBtn"),
-      restartBtn = document.querySelector("#restartBtn"),
-      previousBtn = document.querySelector("#previousBtn"),
-      playBtn = document.querySelector("#playBtn"),
-      playBtnLabel = document.querySelector("#playButtonText"),
-      nextBtn = document.querySelector("#nextBtn"),
-      finishBtn = document.querySelector("#finishBtn"),
-      speedBtn = document.querySelector("#speedBtn"),
-      speedLabel = document.querySelector("#speedBtnText"),
-      canvasContainer = document.querySelector(".canvasContainer");
+    restartBtn = document.querySelector("#restartBtn"),
+    previousBtn = document.querySelector("#previousBtn"),
+    playBtn = document.querySelector("#playBtn"),
+    playBtnLabel = document.querySelector("#playButtonText"),
+    nextBtn = document.querySelector("#nextBtn"),
+    finishBtn = document.querySelector("#finishBtn"),
+    speedBtn = document.querySelector("#speedBtn"),
+    speedLabel = document.querySelector("#speedBtnText"),
+    canvasContainer = document.querySelector(".canvasContainer");
 let W = canvasContainer.clientWidth * 0.7,
     H = canvasContainer.clientHeight * 0.8;
 
@@ -61,6 +61,9 @@ function selectAlgorithm() {
             break;
         case "heap":
             currentAlgorithm = new HeapSort();
+            break;
+        case "insertion":
+            currentAlgorithm = new InserstionSort();
             break;
     }
     replay();
@@ -197,7 +200,7 @@ function generateElements() {
     elements = new Array(slot);
     states = new Array(elements.length);
     for (let i = 0; i < elements.length; i++) {
-        elements[i] = 0.1 * H + delta * i; 
+        elements[i] = 0.1 * H + delta * i;
         states[i] = 'default';
     }
     FYShuffle(elements);
