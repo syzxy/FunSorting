@@ -13,14 +13,6 @@ class MergeSort extends Sort {
     this.auxilaryStates = [...this.states];
   }
 
-  // TODO: Test to see if play should be defined in parent class
-  play() {
-    this.sort();
-    this.arr = [...elements];
-    this.states = this.arr.map(() => 'default');
-    this.playWholeAnimation();
-  }
-
   sort(low = 0, high = this.arr.length - 1) {
     if (low === high) {
       this.steps.push({

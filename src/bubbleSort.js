@@ -10,13 +10,6 @@ class BubbleSort extends Sort {
         super.reset();
     }
 
-    play() {
-        this.sort();
-        this.arr = [...elements];
-        this.states = this.arr.map(() => 'default');
-        this.playWholeAnimation();
-    }
-
     sort() {
         for (let i = 0, l = this.arr.length; i < l; i++) {
             for (let j = 0; j < l - i - 1; j++) {

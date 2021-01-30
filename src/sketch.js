@@ -17,7 +17,7 @@ function setup() {
     colors = {
         default: color('#91968f'),
         sorted: color('#323232'),
-        activated: color('#323232'),
+        activated: color('#1147da'),
         compared: color('#c21b1b'),     // winner of a comparison
     };
 }

@@ -31,6 +31,13 @@ class Sort {
     console.log("Animation completed or finished manually!");
   }
 
+  play() {
+    this.sort();
+    this.arr = [...elements];
+    this.states = this.arr.map(() => 'default');
+    this.playWholeAnimation();
+  }
+
   /* Draw bars on canvas, using p5.js */
   show(scale = this.scale) {
     for (let i = 0; i < this.arr.length; i++) {

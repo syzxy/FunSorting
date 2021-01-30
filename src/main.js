@@ -4,7 +4,7 @@ document.addEventListener('mousedown', function (event) {
 }, false);
 
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
-let debugMode = false;
+let debugMode = true;
 let currentAlgorithm;
 let barWidth = 4;
 let barInterval = 1.1;
