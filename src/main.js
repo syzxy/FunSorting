@@ -36,13 +36,11 @@ if (!debugMode) {
 
 /* Select an algorithm */
 currentAlgorithm = new BubbleSort(); /* default algorithm */
-let selection;
+let selection = algorithms[0];
+selection.setAttribute('class', 'selected');
+
 function selectAlgorithm() {
-    if (!selection) {
-        // console.log("same selection");
-        this.setAttribute('class', 'selected');
-        selection = this;
-    } else if (selection !== this) {
+    if (selection !== this) {
         // console.log("new selection");
         selection.setAttribute('class', '');
         this.setAttribute('class', 'selected');
