@@ -34,7 +34,7 @@ class BubbleSort extends Sort {
         }
     }
 
-    animateStep(stepIndex) {
+    animateStep(stepIndex, forwardMode=true) {
         if (stepIndex === this.steps.length - 1) {
             clearInterval(this.timer);
             this.finished = true;

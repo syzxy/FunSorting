@@ -4,7 +4,7 @@ document.addEventListener('mousedown', function (event) {
 }, false);
 
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
-let debugMode = false;
+let debugMode = true;
 let currentAlgorithm;
 let barWidth = 4;
 let barInterval = 1.1;
@@ -78,7 +78,7 @@ if (!currentAlgorithm.playing && !currentAlgorithm.finished) {
 /* Event listeners on UI buttons */
 shuffleBtn.addEventListener('click', shuffleElements);
 restartBtn.addEventListener('click', replay);
-previousBtn.addEventListener('click', playPreviousStep);
+previousBtn.addEventListener('click', cancelPreviousStep);
 playBtn.addEventListener('click', togglePlay);
 nextBtn.addEventListener('click', playNextStep);
 finishBtn.addEventListener('click', finishPlay);
@@ -144,8 +144,18 @@ function finishPlay() {
     currentAlgorithm.finish();
 }
 
-function playPreviousStep() {
-    console.log("previousStep: TODO");
+function cancelPreviousStep() {
+    console.log("previousStep");
+    /* cancel last animation by setting forwardMode=false */
+    currentAlgorithm.nextStep--;
+    if (currentAlgorithm.nextStep === 0) {
+        disableButtons(true, previousBtn, restartBtn);
+    } else if (currentAlgorithm.nextStep === currentAlgorithm.steps.length - 1) {
+        disableButtons(false, playBtn, nextBtn, finishBtn);
+        currentAlgorithm.paused = true;
+    }
+    currentAlgorithm.animateStep(--currentAlgorithm.nextStep, false);
+    redraw();
 }
 
 function playNextStep() {
@@ -155,7 +165,7 @@ function playNextStep() {
         currentAlgorithm.arr = [...elements];
     }
     currentAlgorithm.animateStep(currentAlgorithm.nextStep++);
-    currentAlgorithm.paused = true;
+    currentAlgorithm.paused = !currentAlgorithm.finished;
     disableButtons(false, previousBtn, restartBtn);
     redraw();
 }
