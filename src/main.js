@@ -150,11 +150,11 @@ function cancelPreviousStep() {
     currentAlgorithm.nextStep--;
     if (currentAlgorithm.nextStep === 0) {
         disableButtons(true, previousBtn, restartBtn);
-    } else if (currentAlgorithm.nextStep === currentAlgorithm.steps.length - 1) {
-        disableButtons(false, playBtn, nextBtn, finishBtn);
+    } else if (currentAlgorithm.finished) {
         currentAlgorithm.paused = true;
+        currentAlgorithm.finished = false;
     }
-    currentAlgorithm.animateStep(--currentAlgorithm.nextStep, false);
+    currentAlgorithm.animateStep(currentAlgorithm.nextStep, false);
     redraw();
 }
 

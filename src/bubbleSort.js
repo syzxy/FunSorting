@@ -35,7 +35,7 @@ class BubbleSort extends Sort {
     }
 
     animateStep(stepIndex, forwardMode=true) {
-        if (stepIndex === this.steps.length - 1) {
+        if (forwardMode && stepIndex === this.steps.length - 1) {
             clearInterval(this.timer);
             this.finished = true;
             this.playing = false;
@@ -44,20 +44,20 @@ class BubbleSort extends Sort {
         switch (step.action) {
             case 'activate':
                 step.idx.forEach( i => {
-                    this.states[i] = 'compared';
+                    this.states[i] = forwardMode ? 'compared' : 'default';
                 });
             case 'compare':
                 // this.states[step.winner] = 'compared';
-                this.states[step.loser] = 'default';
+                this.states[step.loser] = forwardMode ? 'default' : 'compared';
                 break;
             case 'swap':
                 [this.arr[step.from], this.arr[step.to]] =
                 [this.arr[step.to], this.arr[step.from]];
-                this.states[step.from] = 'default';
-                this.states[step.to] = 'compared';
+                this.states[step.from] = forwardMode ? 'default' : 'compared';
+                this.states[step.to] = forwardMode ? 'compared' : 'default';
                 break;
             case 'sorted':
-                this.states[step.idx] = 'sorted';
+                this.states[step.idx] = forwardMode ? 'sorted' : 'compared';
                 break;
         }
     }

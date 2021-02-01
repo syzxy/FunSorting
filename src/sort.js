@@ -8,10 +8,8 @@ class Sort {
   reset() {
     this.arr = [...elements];         // copy of the generated global array
     this.states = this.arr.map(() => 'default');  // animation state of each element
-    // this.states = [...states];
     this.visual_speed = visualSpeed;  // the moving speed of bars
     this.playing = false;             // animation is playing or not
-    // this.resumed = false;             // animation is resumed from pause or regular
     this.paused = false;              // animation have been paused or not
     this._finished = false;           // stop animation upon finishing
     this.scale = 1;                   // scale of bars, 2 for non-in-place
@@ -24,11 +22,18 @@ class Sort {
 
   set finished(newStatus) {
     this._finished = newStatus;
-    playBtn.textContent = 'play_arrow';
-    playBtnLabel.textContent = 'play';
-    disableButtons(true, playBtn, nextBtn, finishBtn);
-    disableButtons(false, restartBtn, previousBtn);
-    console.log("Animation completed or finished manually!");
+
+    /* animation finished automatically, rather than mannually */
+    if (!this.paused && newStatus === true) {
+      playBtn.textContent = 'play_arrow';
+      playBtnLabel.textContent = 'play';
+    }
+
+    disableButtons(newStatus, playBtn, nextBtn, finishBtn);
+    if (this.finished) {
+      disableButtons(false, restartBtn, previousBtn);
+    }
+    if (this.finished) {console.log("Animation completed or finished manually!");}
   }
 
   play() {
@@ -41,7 +46,7 @@ class Sort {
   /* Draw bars on canvas, using p5.js */
   show(scale = this.scale) {
     for (let i = 0; i < this.arr.length; i++) {
-      let j = (barInterval*i+1) * barWidth;
+      let j = (barInterval * i + 1) * barWidth;
       stroke(colors[this.states[i]]);
       strokeWeight(barWidth);
       line(j, height / scale - barWidth, j, (height - this.arr[i]) / scale - barWidth);
@@ -76,8 +81,9 @@ class Sort {
     if (this.hasOwnProperty('auxilaryArray')) {
       this.auxilaryStates = [...this.states];
     }
-    redraw();
     this.finished = true;
+    this.nextStep = this.steps.length;
+    redraw();
   }
 
   // Taken from:
