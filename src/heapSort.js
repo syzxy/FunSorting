@@ -21,12 +21,14 @@ class HeapSort extends Sort {
     this.maxHeapify(this.arr.length);
     let end = this.arr.length - 1;
     while (end > 0) {
-      [this.arr[end], this.arr[0]] = [this.arr[0], this.arr[end]];
-      this.steps.push({action: "swap", from: 0, to: end});
-      this.steps.push({action: "dim", idx: [0]});
+      this.steps.push({action: "activate", idx: 0});
+      [this.arr[0], this.arr[end]] = [this.arr[end], this.arr[0]];
+      this.steps.push({action: "sort", idx: end});
+      // this.steps.push({action: "dim", idx: [0]});
       end--;
       this.siftDown(0, end);
     }
+    this.steps.push({action: "sort", idx: end});
   }
 
   /**
@@ -34,7 +36,7 @@ class HeapSort extends Sort {
    * @param {number} size size of the heap
    */
   maxHeapify(size) {
-    let lastParent = Math.floor( ((size - 1) - 1) / 2 );
+    let lastParent = Math.floor(((size - 1) - 1) / 2);
     while (lastParent >= 0) {
       this.siftDown(lastParent, size - 1);
       lastParent--;
@@ -64,12 +66,12 @@ class HeapSort extends Sort {
       [this.arr[start], this.arr[largest]] = [this.arr[largest], this.arr[start]];
       this.steps.push({action: "compare", idx: largest});
       this.steps.push({action: "siftDown", from: start, to: largest});
-      this.steps.push({action: "dim", idx: [start,largest]});
+      this.steps.push({action: "dim", parent: start, child: largest});
       this.siftDown(largest, end);
     }
   }
 
-  animateStep(stepIndex) {
+  animateStep(stepIndex, forwardMode = true) {
     if (stepIndex === this.steps.length - 1) {
       clearInterval(this.timer);
       this.finished = true;
@@ -78,26 +80,27 @@ class HeapSort extends Sort {
     let step = this.steps[stepIndex];
     switch (step.action) {
       case 'activate':
-        this.states[step.idx] = 'activated';
+        this.states[step.idx] = forwardMode ? 'activated' : 'default';
+        break;
+      case 'deactivate':
+        this.states[step.idx] = forwardMode ? 'default' : 'activated';
         break;
       case 'compare':
-        this.states[step.idx] = 'compared';
+        this.states[step.idx] = forwardMode ? 'compared' : 'default';
         break;
       case 'siftDown':
         [this.arr[step.from], this.arr[step.to]] = [this.arr[step.to], this.arr[step.from]];
-        // this.states[step.from] = this.states[step.to] = 'default';
+        this.states[step.from] = forwardMode ? 'compared' : 'activated';
+        this.states[step.to] = forwardMode ? 'activated' : 'compared';
         break;
-      case 'swap':
-        this.states[step.from] = 'compared';
-        [this.arr[step.from], this.arr[step.to]] = [this.arr[step.to], this.arr[step.from]];
-        this.states[step.to] = 'sorted';
+      case 'sort':
+        [this.arr[0], this.arr[step.idx]] = [this.arr[step.idx], this.arr[0]];
+        this.states[0] = forwardMode ? 'default' : 'activated';
+        this.states[step.idx] = forwardMode ? 'sorted' : 'default';
         break;
       case 'dim':
-        if (stepIndex !== this.steps.length - 1) {
-          step.idx.forEach(i => {this.states[i] = 'default'});
-        } else {
-          step.idx.forEach(i => {this.states[i] = 'sorted'});
-        }
+        this.states[step.parent] = forwardMode ? 'default' : 'compared';
+        this.states[step.child] = forwardMode ? 'default' : 'activated';
         break;
     }
   }
