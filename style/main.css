@@ -34,11 +34,14 @@ body {
 
 header {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   line-height: 2;
   font-size: 1.6rem;
   cursor: default;
 
+  text-shadow: 0.1em 0.1em 4px black;
   /* border: 1px dotted white; */
 }
 
@@ -51,6 +54,34 @@ h1 {
   font-size: inherit;
   text-transform: uppercase;
   color: white;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 1rem;
+  list-style: none;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: 3rem;
+}
+
+.social-media .fab {
+  color: #adadad;
+  font-size: 3rem;
+  vertical-align: -12.5%;
+  transition: 0.15s ease-in color,
+              0.15s ease-in transform,
+              0.15s ease-in text-shadow;
+}
+.social-media .fab:hover {
+  transform: translate(-0.05em, -0.05em);
+  color: gold;
+  text-shadow: 0.2em 0.2em 4px black;
+  transition: 0.15s ease-in color,
+              0.15s ease-in transform,
+              0.15s ease-in text-shadow;
 }
 
 /*|| Main Content Settings */

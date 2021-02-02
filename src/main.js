@@ -6,7 +6,7 @@ document.addEventListener('mousedown', function (event) {
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
 let debugMode = false;
 let currentAlgorithm;
-let barWidth = 8;
+let barWidth = 5;
 let barInterval = 1.1;
 let elements = debugMode ? [...debugElements] : [];
 
