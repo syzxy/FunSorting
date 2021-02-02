@@ -37,7 +37,6 @@ class selectionSort extends Sort {
     }
 
     let step = this.steps[stepIndex];
-    console.log(step);
     switch (step.action) {
       case 'changeMin':
         this.states[step.from] = forwardMode ? 'default' : 'compared';
