@@ -30,7 +30,6 @@ class InserstionSort extends Sort {
     }
 
     let step = this.steps[stepIndex];
-    console.log(step);
     switch (step.action) {
       case 'sort':
         this.states[step.idx] = forwardMode ? 'sorted' : (step.idx === 0 ? 'default': 'compared');

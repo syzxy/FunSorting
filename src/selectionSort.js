@@ -19,15 +19,17 @@ class selectionSort extends Sort {
           min = j;
         }
       }
-      this.steps.push({action: 'dim'});
+      if (min !== this.arr.length - 1) {
+        this.steps.push({action: 'dim'});
+      }
       [this.arr[min], this.arr[i]] = [this.arr[i], this.arr[min]];
       this.steps.push({action: "swap", from: min, to: i});
-      this.steps.push({action: "sorted", idx: i});
+      this.steps.push({action: "sort", idx: i});
     }
-    this.steps.push({action: "sorted", idx: this.arr.length - 1});
+    this.steps.push({action: "sort", idx: this.arr.length - 1});
   }
 
-  animateStep(stepIndex) {
+  animateStep(stepIndex, forwardMode=true) {
     if (stepIndex === this.steps.length - 1) {
       clearInterval(this.timer);
       this.finished = true;
@@ -35,27 +37,28 @@ class selectionSort extends Sort {
     }
 
     let step = this.steps[stepIndex];
+    console.log(step);
     switch (step.action) {
       case 'changeMin':
-        this.states[step.from] = 'default';
-        this.states[step.to] = 'compared';
+        this.states[step.from] = forwardMode ? 'default' : 'compared';
+        this.states[step.to] = forwardMode ? 'compared' : 'default';
         break;
       case 'iterate':
-        this.states[step.idx] = 'activated';
+        this.states[step.idx] = forwardMode ? 'activated' : "default";
         if (!step.first) {
-          this.states[step.idx - 1] = 'default';
+          this.states[step.idx - 1] = forwardMode ? 'default' : 'activated';
         }
         break;
       case 'swap':
         [this.arr[step.from], this.arr[step.to]] = [this.arr[step.to], this.arr[step.from]];
-        this.states[step.from] = 'default';
-        this.states[step.to] = 'compared';
+        this.states[step.from] = forwardMode ? 'default' : 'compared';
+        this.states[step.to] = forwardMode ? 'compared' : 'default';
         break;
       case 'dim':
-        this.states[this.arr.length-1] = 'default';
+        this.states[this.arr.length-1] = forwardMode ? 'default' : 'activated';
         break;
-      case 'sorted':
-        this.states[step.idx] = 'sorted';
+      case 'sort':
+        this.states[step.idx] = forwardMode ? 'sorted' : 'compared';
         break;
     }
   }
