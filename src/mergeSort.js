@@ -16,7 +16,7 @@ class MergeSort extends Sort {
   sort(low = 0, high = this.arr.length - 1) {
     if (low === high) {
       this.steps.push({
-        action: "activate",
+        action: "sort",
         idx: low,
       });
     } else {
@@ -39,19 +39,23 @@ class MergeSort extends Sort {
       this.steps.push(compareStep);
       if (this.arr[i] < this.arr[j]) {
         [this.auxilaryArray[k], this.arr[i]] = [this.arr[i], this.auxilaryArray[k]];
-        this.steps.push({action: "merge", from: i, to: k});
-        compareStep.winner = i++;
+        compareStep.winner = i;
         compareStep.loser = j;
+        this.steps.push({action: "merge", from: i, to: k});
+        i++;
       } else {
         [this.auxilaryArray[k], this.arr[j]] = [this.arr[j], this.auxilaryArray[k]];
-        this.steps.push({action: "merge", from: j, to: k});
-        compareStep.winner = j++;
+        compareStep.winner = j;
         compareStep.loser = i;
+        this.steps.push({action: "merge", from: j, to: k});
+        j++;
       }
       k++;
+      this.steps.push({action: "dim", idx: compareStep.loser});
     }
 
     while (i <= mid) {
+      
       [this.auxilaryArray[k], this.arr[i]] = [this.arr[i], this.auxilaryArray[k]];
       this.steps.push({action: "merge", from: i, to: k});
       k++;
@@ -79,24 +83,25 @@ class MergeSort extends Sort {
     });
   }
 
-  animateStep(stepIndex) {
-    if (stepIndex === this.steps.length - 1) {
+  animateStep(stepIndex, forwardMode=true) {
+    if (forwardMode && stepIndex === this.steps.length - 1) {
       clearInterval(this.timer);
       this.finished = true;
       this.playing = false;
-      // return;
     }
     let step = this.steps[stepIndex];
     switch (step.action) {
-      case 'activate':
-        this.states[step.idx] = 'activated';
+      case 'sort':
+        this.states[step.idx] = forwardMode ? 'sorted' : 'default';
         break;
       case 'compare':
-        this.states[step.winner] = this.states[step.loser] = 'compared';
+        this.states[step.winner] = this.states[step.loser] = forwardMode ? 'compared' : 'compared';
         break;
+      case 'dim':
+        this.states[step.idx] = forwardMode ? 'sorted' : 'compared';
       case 'merge':
-        this.states[step.from] = 'sorted';
-        this.auxilaryStates[step.to] = 'sorted';
+        this.states[step.from] = forwardMode ? 'sorted' : 'sorted';
+        this.auxilaryStates[step.to] = forwardMode ? 'sorted' : 'default';
         [this.arr[step.from], this.auxilaryArray[step.to]] =
           [this.auxilaryArray[step.to], this.arr[step.from]];
         break;
@@ -104,6 +109,7 @@ class MergeSort extends Sort {
         for (let i = step.from; i <= step.to; i++) {
           // this.auxilaryStates[i] = 'default';
           [this.arr[i], this.auxilaryArray[i]] = [this.auxilaryArray[i], this.arr[i]];
+          this.auxilaryStates[i] = forwardMode ? 'default' : 'sorted';
         }
         break;
     }

@@ -65,12 +65,12 @@ class Sort {
   }
 
   pause() {
-    console.log("paused...");
+    // console.log("paused...");
     clearInterval(this.timer);
   }
 
   resume() {
-    console.log("resumed...");
+    // console.log("resumed...");
     this.playWholeAnimation();
   }
 

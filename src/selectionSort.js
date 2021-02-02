@@ -30,7 +30,7 @@ class selectionSort extends Sort {
   }
 
   animateStep(stepIndex, forwardMode=true) {
-    if (stepIndex === this.steps.length - 1) {
+    if (forwardMode && stepIndex === this.steps.length - 1) {
       clearInterval(this.timer);
       this.finished = true;
       this.playing = false;

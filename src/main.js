@@ -4,9 +4,9 @@ document.addEventListener('mousedown', function (event) {
 }, false);
 
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
-let debugMode = true;
+let debugMode = false;
 let currentAlgorithm;
-let barWidth = 4;
+let barWidth = 8;
 let barInterval = 1.1;
 let elements = debugMode ? [...debugElements] : [];
 
@@ -124,7 +124,7 @@ function shuffleElements() {
 }
 
 function replay() {
-    console.log("replay");
+    // console.log("replay");
     if (currentAlgorithm.timer) {
         clearInterval(currentAlgorithm.timer);
     }
@@ -137,7 +137,7 @@ function replay() {
 }
 
 function finishPlay() {
-    console.log("finishPlay");
+    // console.log("finishPlay");
     if (currentAlgorithm.timer) {
         clearInterval(currentAlgorithm.timer);
     }
@@ -145,7 +145,7 @@ function finishPlay() {
 }
 
 function cancelPreviousStep() {
-    console.log("previousStep");
+    // console.log("previousStep");
     /* cancel last animation by setting forwardMode=false */
     currentAlgorithm.nextStep--;
     if (currentAlgorithm.nextStep === 0) {
@@ -159,7 +159,7 @@ function cancelPreviousStep() {
 }
 
 function playNextStep() {
-    console.log("nextStep");
+    // console.log("nextStep");
     if (currentAlgorithm.steps.length === 0) {
         currentAlgorithm.sort();
         currentAlgorithm.arr = [...elements];
@@ -171,7 +171,7 @@ function playNextStep() {
 }
 
 function accelerate() {
-    console.log("accelerate: TODO");
+    // console.log("accelerate: TODO");
     switch (speedLabel.textContent) {
         case '1x':
             speedLabel.textContent = '2x';
@@ -190,8 +190,8 @@ function accelerate() {
             visualSpeed *= 8;
             break;
     }
-    console.log(speedLabel.textContent);
-    console.log(visualSpeed);
+    // console.log(speedLabel.textContent);
+    // console.log(visualSpeed);
     if (currentAlgorithm.playing && !currentAlgorithm.paused) {
         currentAlgorithm.pause();
         currentAlgorithm.resume();
