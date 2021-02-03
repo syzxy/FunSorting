@@ -1,5 +1,5 @@
 # FunSorting - Visualizing sorting algorithms
-Sorting algorithms visualization with html, css, js and p5.js. Play with it: <https://funsorting.com>.
+Sorting algorithms visualization with html, css, js and p5.js. Play with it at: <a href="https://funsorting.com" target="_blank">https://funsorting.com</a>.
 
 The work is inspired by many helpful resources that were generously put online and open source:
 
