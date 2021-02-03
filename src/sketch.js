@@ -1,12 +1,5 @@
-// Sorting Visualization
-// Inspired by Daniel Shiffman
-// https://thecodingtrain.com/CodingChallenges/143-quicksort.html
-// https://editor.p5js.org/codingtrain/sketches/vic6Qzo-j
-// https://youtu.be/eqo2LxRADhU
-
 let visualSpeed = 50;
 let colors;
-// let dimmed;             // 1: dim the color of the ith bar, 0: otherwise
 let bgColor = '#c5d4b7';
 
 // Setup a p5 canvas
