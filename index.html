@@ -3,19 +3,54 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/e6a6ec85bf.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="src/sketch.js"></script>
-    <script src="src/sort.js"></script>
-    <script src="src/bubbleSort.js"></script>
-    <script src="src/mergeSort.js"></script>
-    <script src="src/quickSort.js"></script>
-    <script src="src/heapSort.js"></script>
-    <script src="src/insertionSort.js"></script>
-    <script src="src/selectionSort.js"></script>
-    <script defer src="src/main.js"></script>
+    <meta
+      name="description"
+      content="Visualization and comparison of sorting algorithms."
+    />
     <title>fun sorting | visualizing sorting algorithms</title>
+
+    <meta property="og:title" content="fun sorting | visualizing sorting algorithms">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Visualization and comparison of sorting algorithms." >
+    <meta property="og:image" content="/img/thumbnail.png">
+    
+    <meta name="twitter:card" content="Screen shot of running merge sort" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:creator" content="@Sam" />
+    <meta name="twitter:creator:id" content="@Sam10586814" />
+    <meta name="twitter:title" content="fun sorting | visualizing sorting algorithms" />
+    <meta
+      name="twitter:description"
+      content="Visualization and comparison of sorting algorithms."
+    />
+    <meta
+      name="twitter:image"
+      content="img/thumbnail.png"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/e6a6ec85bf.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"
+    ></script>
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script defer src="src/sketch.js"></script>
+    <script defer src="src/sort.js"></script>
+    <script defer src="src/bubbleSort.js"></script>
+    <script defer src="src/mergeSort.js"></script>
+    <script defer src="src/quickSort.js"></script>
+    <script defer src="src/heapSort.js"></script>
+    <script defer src="src/insertionSort.js"></script>
+    <script defer src="src/selectionSort.js"></script>
+    <script defer src="src/main.js"></script>
+
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
       rel="stylesheet"
@@ -26,15 +61,35 @@
     />
     <link rel="stylesheet" href="style/main.css" />
     <link rel="stylesheet" href="style/nav.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/favicon-16x16.png"
+    />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <header>
       <span class="material-icons-round">graphic_eq</span>
       <h1>Fun Sorting</h1>
       <ul class="social-media">
-        <li><a href="https://github.com/syzxy">
-          <i class="fab fa-github"></i>
-        </a></li>
+        <li>
+          <a href="https://github.com/syzxy">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
       </ul>
     </header>
     <!-- Parent container of the p5 canvas -->
@@ -42,22 +97,25 @@
       <nav class="selectionMenu">
         <ul class="breadCrumb">
           <li class="">
-            <span class="indicator"></span><span class="label">bubble</span>
+            <span class="indicator"></span
+            ><span class="label">bubble sort</span>
           </li>
           <li class="">
-            <span class="indicator"></span><span class="label">merge</span>
+            <span class="indicator"></span><span class="label">merge sort</span>
           </li>
           <li class="">
-            <span class="indicator"></span><span class="label">quick</span>
+            <span class="indicator"></span><span class="label">quick sort</span>
           </li>
           <li class="">
-            <span class="indicator"></span><span class="label">heap</span>
+            <span class="indicator"></span><span class="label">heap sort</span>
           </li>
           <li class="">
-            <span class="indicator"></span><span class="label">insertion</span>
+            <span class="indicator"></span
+            ><span class="label">insertion sort</span>
           </li>
           <li class="">
-            <span class="indicator"></span><span class="label">selection</span>
+            <span class="indicator"></span
+            ><span class="label">selection sort</span>
           </li>
         </ul>
       </nav>

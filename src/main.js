@@ -1,7 +1,14 @@
+if(typeof(console) === 'undefined') {
+    var console = {}
+    console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time = console.timeEnd = console.assert = console.profile = function() {};
+}
+console.log("Welcome and hope you enjoy :)");
+
 /* prevent mouse double click and drag selection(and probably more) */
 document.addEventListener('mousedown', function (event) {
     event.preventDefault();
 }, false);
+
 
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
 let debugMode = false;
@@ -48,22 +55,22 @@ function selectAlgorithm() {
     }
     const algorithm = this.querySelector(".label").textContent;
     switch (algorithm) {
-        case "bubble":
+        case "bubble sort":
             currentAlgorithm = new BubbleSort();
             break;
-        case "merge":
+        case "merge sort":
             currentAlgorithm = new MergeSort();
             break;
-        case "quick":
+        case "quick sort":
             currentAlgorithm = new QuickSort();
             break;
-        case "heap":
+        case "heap sort":
             currentAlgorithm = new HeapSort();
             break;
-        case "insertion":
+        case "insertion sort":
             currentAlgorithm = new InserstionSort();
             break;
-        case "selection":
+        case "selection sort":
             currentAlgorithm = new selectionSort();
             break;
     }
