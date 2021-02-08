@@ -1,6 +1,8 @@
-let visualSpeed = 50;
+let visualSpeed = 40;
 let colors;
 let bgColor = '#c5d4b7';
+let barWidth = 5;
+let barInterval = 1.05;
 
 // Setup a p5 canvas
 function setup() {

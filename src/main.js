@@ -13,8 +13,6 @@ document.addEventListener('mousedown', function (event) {
 const debugElements = [70, 180, 150, 90, 80, 100, 60, 40];
 let debugMode = false;
 let currentAlgorithm;
-let barWidth = 5;
-let barInterval = 1.1;
 let elements = debugMode ? [...debugElements] : [];
 
 /* References to play buttons / canvas container */
@@ -42,7 +40,7 @@ if (!debugMode) {
 }
 
 /* Select an algorithm */
-currentAlgorithm = new BubbleSort(); /* default algorithm */
+currentAlgorithm = new QuickSort(); /* default algorithm */
 let selection = algorithms[0];
 selection.setAttribute('class', 'selected');
 
